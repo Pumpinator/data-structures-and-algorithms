@@ -115,6 +115,20 @@ public class LinkedList<T> {
         return temp;
     }
 
+    public void reverse() {
+        Node<T> temp = head;
+        head = tail;
+        tail = temp;
+        Node<T> after = temp.next;
+        Node<T> before = null;
+        for (int i = 0; i < length; i++) {
+            after = temp.next;
+            temp.next = before;
+            before = temp;
+            temp = after;
+        }
+    }
+
     public Node get(int index) {
         if (index < 0 || index >= length) return null;
         Node<T> temp = head;

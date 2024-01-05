@@ -8,7 +8,7 @@ public class Main {
         linkedList.append(2);
         linkedList.append(3);
 
-        linkedList.remove(1);
+        linkedList.reverse();
 
         linkedList.printList();
     }
