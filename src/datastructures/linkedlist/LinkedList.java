@@ -48,6 +48,18 @@ public class LinkedList<T> {
         return true;
     }
 
+    public Node<T> remove(int index) {
+        if (index < 0 || index > length) return null;
+        if (index == 0) return removeFirst();
+        if (index == length) return removeLast();
+        Node<T> prev = get(index - 1);
+        Node<T> temp = prev.next;
+        prev.next = temp.next;
+        temp.next = null;
+        length--;
+        return temp;
+    }
+
     public void append(T value) {
         Node<T> newNode = new Node<>(value);
         if (length == 0) {
@@ -88,12 +100,12 @@ public class LinkedList<T> {
     public Node<T> removeLast() {
         if (length == 0) return null;
         Node<T> temp = head;
-        Node<T> pre = head;
+        Node<T> prev = head;
         while (temp.next != null) {
-            pre = temp;
+            prev = temp;
             temp = temp.next;
         }
-        tail = pre;
+        tail = prev;
         tail.next = null;
         length--;
         if (length == 0) {
