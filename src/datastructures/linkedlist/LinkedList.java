@@ -42,6 +42,18 @@ public class LinkedList<T> {
         length++;
     }
 
+    public void prepend(T value) {
+        Node<T> newNode = new Node<>(value);
+        if (length == 0) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+        length++;
+    }
+
     public Node<T> removeFirst() {
         if (length == 0) return null;
         Node<T> temp = head;
@@ -73,16 +85,15 @@ public class LinkedList<T> {
         return temp;
     }
 
-    public void prepend(T value) {
-        Node<T> newNode = new Node<>(value);
-        if (length == 0) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            newNode.next = head;
-            head = newNode;
+    public Node get(int index) {
+        if (index < 0 || index >= length) {
+            return null;
         }
-        length++;
+        Node<T> temp = head;
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+        return temp;
     }
 
     public void printList() {
