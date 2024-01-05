@@ -30,6 +30,24 @@ public class LinkedList<T> {
         length = 1;
     }
 
+    public boolean insert(int index, T value) {
+        if (index < 0 || index > length) return false;
+        if (index == 0) {
+            prepend(value);
+            return true;
+        }
+        if (index == length) {
+            append(value);
+            return true;
+        }
+        Node<T> newNode = new Node<>(value);
+        Node<T> temp = get(index - 1);
+        newNode.next = temp.next;
+        temp.next = newNode;
+        length++;
+        return true;
+    }
+
     public void append(T value) {
         Node<T> newNode = new Node<>(value);
         if (length == 0) {
