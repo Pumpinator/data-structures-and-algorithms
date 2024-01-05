@@ -1,6 +1,6 @@
 package datastructures.linkedlist;
 
-public class LinkedList<T> {
+public class  LinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
     private int length;
@@ -37,6 +37,36 @@ public class LinkedList<T> {
         length++;
     }
 
+    public Node<T> removeLast() {
+        if (length == 0) return null;
+        Node<T> temp = head;
+        Node<T> pre = head;
+        while (temp.next != null) {
+            pre = temp;
+            temp = temp.next;
+        }
+        tail = pre;
+        tail.next = null;
+        length--;
+        if(length == 0) {
+            head = null;
+            tail = null;
+        }
+        return temp;
+    }
+
+    public void prepend(T value) {
+        Node<T> newNode = new Node<>(value);
+        if (length == 0) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            newNode.next = head;
+            head = newNode;
+        }
+        length++;
+    }
+
     public void printList() {
         Node temp = head;
         while (head != null) {
@@ -49,15 +79,15 @@ public class LinkedList<T> {
         }
     }
 
-    public void getHead() {
-        System.out.println("Head: " + head.value);
+    public Node<T> getHead() {
+        return head;
     }
 
-    public void getTail() {
-        System.out.println("Tail: " + tail.value);
+    public Node<T> getTail() {
+        return tail;
     }
 
-    public void getLength() {
-        System.out.println("Length: " + length);
+    public int getLength() {
+        return length;
     }
 }
