@@ -129,6 +129,7 @@ public class LinkedList<T> {
         }
     }
 
+
     public Node get(int index) {
         if (index < 0 || index >= length) return null;
         Node<T> temp = head;
@@ -169,5 +170,15 @@ public class LinkedList<T> {
 
     public int getLength() {
         return length;
+    }
+
+    Node findMiddleNode() {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
     }
 }
