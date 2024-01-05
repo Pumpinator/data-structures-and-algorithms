@@ -8,8 +8,8 @@ public class Main {
         linkedList.append(2);
         linkedList.append(3);
 
-        System.out.println(linkedList.get(0));
-        System.out.println(linkedList.get(1));
-        System.out.println(linkedList.get(2));
+        linkedList.set(0, 0);
+
+        linkedList.printList();
     }
 }
