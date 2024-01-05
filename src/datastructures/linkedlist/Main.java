@@ -8,10 +8,14 @@ public class Main {
         linkedList.prepend(2);
         linkedList.prepend(1);
 
-        System.out.println(linkedList.removeLast().value);
-        System.out.println(linkedList.removeLast().value);
-        System.out.println(linkedList.removeLast().value);
-        System.out.println(linkedList.removeLast());
+        linkedList.append(4);
+        linkedList.append(5);
 
+        System.out.println(linkedList.removeLast());
+        System.out.println(linkedList.removeLast());
+        System.out.println(linkedList.removeFirst());
+        System.out.println(linkedList.removeFirst());
+        System.out.println(linkedList.removeFirst());
+        System.out.println(linkedList.removeFirst());
     }
 }

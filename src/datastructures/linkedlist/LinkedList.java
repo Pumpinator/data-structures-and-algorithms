@@ -1,6 +1,6 @@
 package datastructures.linkedlist;
 
-public class  LinkedList<T> {
+public class LinkedList<T> {
     private Node<T> head;
     private Node<T> tail;
     private int length;
@@ -12,6 +12,11 @@ public class  LinkedList<T> {
         public Node(T value) {
             this.value = value;
             next = null;
+        }
+
+        @Override
+        public String toString() {
+            return value.toString();
         }
     }
 
@@ -37,6 +42,19 @@ public class  LinkedList<T> {
         length++;
     }
 
+    public Node<T> removeFirst() {
+        if (length == 0) return null;
+        Node<T> temp = head;
+        head = head.next;
+        temp.next = null;
+        length--;
+        if (length == 0) {
+            tail = null;
+        }
+        return temp;
+
+    }
+
     public Node<T> removeLast() {
         if (length == 0) return null;
         Node<T> temp = head;
@@ -48,7 +66,7 @@ public class  LinkedList<T> {
         tail = pre;
         tail.next = null;
         length--;
-        if(length == 0) {
+        if (length == 0) {
             head = null;
             tail = null;
         }
