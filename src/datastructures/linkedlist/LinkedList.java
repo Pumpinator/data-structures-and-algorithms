@@ -1,13 +1,13 @@
 package datastructures.linkedlist;
 
 public class LinkedList<T> {
-    private Node<T> head;
-    private Node<T> tail;
+    private Node head;
+    private Node tail;
     private int length;
 
     class Node<T> {
         T value;
-        Node<T> next;
+        Node next;
 
         public Node(T value) {
             this.value = value;
@@ -40,20 +40,20 @@ public class LinkedList<T> {
             append(value);
             return true;
         }
-        Node<T> newNode = new Node<>(value);
-        Node<T> temp = get(index - 1);
+        Node newNode = new Node<>(value);
+        Node temp = get(index - 1);
         newNode.next = temp.next;
         temp.next = newNode;
         length++;
         return true;
     }
 
-    public Node<T> remove(int index) {
+    public Node remove(int index) {
         if (index < 0 || index > length) return null;
         if (index == 0) return removeFirst();
         if (index == length) return removeLast();
-        Node<T> prev = get(index - 1);
-        Node<T> temp = prev.next;
+        Node prev = get(index - 1);
+        Node temp = prev.next;
         prev.next = temp.next;
         temp.next = null;
         length--;
@@ -61,7 +61,7 @@ public class LinkedList<T> {
     }
 
     public void append(T value) {
-        Node<T> newNode = new Node<>(value);
+        Node newNode = new Node<>(value);
         if (length == 0) {
             head = newNode;
             tail = newNode;
@@ -73,7 +73,7 @@ public class LinkedList<T> {
     }
 
     public void prepend(T value) {
-        Node<T> newNode = new Node<>(value);
+        Node newNode = new Node<>(value);
         if (length == 0) {
             head = newNode;
             tail = newNode;
@@ -84,9 +84,9 @@ public class LinkedList<T> {
         length++;
     }
 
-    public Node<T> removeFirst() {
+    public Node removeFirst() {
         if (length == 0) return null;
-        Node<T> temp = head;
+        Node temp = head;
         head = head.next;
         temp.next = null;
         length--;
@@ -97,10 +97,10 @@ public class LinkedList<T> {
 
     }
 
-    public Node<T> removeLast() {
+    public Node removeLast() {
         if (length == 0) return null;
-        Node<T> temp = head;
-        Node<T> prev = head;
+        Node temp = head;
+        Node prev = head;
         while (temp.next != null) {
             prev = temp;
             temp = temp.next;
@@ -116,11 +116,11 @@ public class LinkedList<T> {
     }
 
     public void reverse() {
-        Node<T> temp = head;
+        Node temp = head;
         head = tail;
         tail = temp;
-        Node<T> after = temp.next;
-        Node<T> before = null;
+        Node after = temp.next;
+        Node before = null;
         for (int i = 0; i < length; i++) {
             after = temp.next;
             temp.next = before;
@@ -132,7 +132,7 @@ public class LinkedList<T> {
 
     public Node get(int index) {
         if (index < 0 || index >= length) return null;
-        Node<T> temp = head;
+        Node temp = head;
         for (int i = 0; i < index; i++) {
             temp = temp.next;
         }
@@ -140,7 +140,7 @@ public class LinkedList<T> {
     }
 
     public boolean set(int index, T value) {
-        Node<T> temp = get(index);
+        Node temp = get(index);
         if (temp != null) {
             temp.value = value;
             return true;
@@ -172,7 +172,7 @@ public class LinkedList<T> {
         return length;
     }
 
-    Node findMiddleNode() {
+    public Node findMiddleNode() {
         Node slow = head;
         Node fast = head;
         while (fast != null && fast.next != null) {
@@ -180,5 +180,16 @@ public class LinkedList<T> {
             fast = fast.next.next;
         }
         return slow;
+    }
+
+    public boolean hasLoop() {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) return true;
+        }
+        return false;
     }
 }
